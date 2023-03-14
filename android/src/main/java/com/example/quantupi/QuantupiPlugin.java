@@ -42,6 +42,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
             String currency = call.argument("currency");
             String url = call.argument("url");
             String merchantId = call.argument("merchantId");
+            String orderId = call.argument("orderId");
 
             try {
                 exception = false;
@@ -51,6 +52,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 uriBuilder.appendQueryParameter("pn", receiverName);
                 uriBuilder.appendQueryParameter("tn", transactionNote);
                 uriBuilder.appendQueryParameter("am", amount);
+                uriBuilder.appendQueryParameter("tid", orderId);
                 if (transactionRefId != null) {
                     uriBuilder.appendQueryParameter("tr", transactionRefId);
                 }

@@ -10,6 +10,7 @@ class Quantupi {
   final String receiverName;
   final String transactionNote;
   final double amount;
+  final String orderId;
   final String? transactionRefId;
   final String? currency;
   final String? url;
@@ -21,6 +22,7 @@ class Quantupi {
     required this.receiverName,
     required this.transactionNote,
     required this.amount,
+    required this.orderId,
     this.transactionRefId,
     this.currency = "INR",
     this.url,
@@ -44,6 +46,7 @@ class Quantupi {
           'amount': amount.toString(),
           'currency': currency,
           'merchantId': merchantId,
+          'orderId': orderId,
         });
         return response;
       } else if (Platform.isIOS) {
