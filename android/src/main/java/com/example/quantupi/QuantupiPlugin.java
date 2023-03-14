@@ -90,14 +90,14 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
         if (uniqueRequestCode == requestCode && finalResult != null) {
             if (data != null) {
-                if (!exception) finalResult.success("response");
-                // try {
-                //     String response =data.getStringExtra("response");
+               
+                try {
+                    String response =data.getStringExtra("response");
 
-                //     if (!exception) finalResult.success(response);
-                // } catch (Exception ex) {
-                //     if (!exception) finalResult.success("null_response");
-                // }
+                    if (!exception) finalResult.success(response);
+                } catch (Exception ex) {
+                    if (!exception) finalResult.success("null_response");
+                }
             } else {
                 Log.d("Quantupi NOTE: ", "Received NULL, User cancelled the transaction.");
                 if (!exception) finalResult.success("user_canceled");
