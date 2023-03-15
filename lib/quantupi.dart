@@ -59,6 +59,7 @@ class Quantupi {
               transactionNote: transactionNote,
               transactionRef: transactionRefId,
               amount: amount,
+              orderId: orderId,
               currency: currency,
               merchantId: merchantId,
               appname: appname,
@@ -87,6 +88,7 @@ String transactiondetailstostring({
   String? transactionRef,
   String? transactionNote,
   required double amount,
+  required String orderId,
   String? currency = 'INR',
   String? merchantId,
 }) {
@@ -116,13 +118,11 @@ String transactiondetailstostring({
       '?pa=$payeeAddress'
       '&pn=${Uri.encodeComponent(payeeName)}'
       '&tr=$transactionRef'
+      '&tid=$orderId'
       '&tn=${Uri.encodeComponent(transactionNote!)}'
       '&am=${amount.toString()}'
       '&cu=$currency';
-  // if (url != null && url!.isNotEmpty) {
-  // uri +=
-  // '&url=${Uri.encodeComponent('com.google.android.apps.nbu.paisa.user')}';
-  // }
+  
   if (merchantId != null && merchantId.isNotEmpty) {
     uri += '&mc=${Uri.encodeComponent(merchantId)}';
   }
