@@ -117,8 +117,8 @@ String transactiondetailstostring({
   String uri = '$prefixuri'
       '?pa=$payeeAddress'
       '&pn=${Uri.encodeComponent(payeeName)}'
-      '&tr=$transactionRef'
-      '&tid=$orderId'
+      '&tr=$orderId'
+      '&tid=$transactionRef'
       '&tn=${Uri.encodeComponent(transactionNote!)}'
       '&am=${amount.toString()}'
       '&cu=$currency';
