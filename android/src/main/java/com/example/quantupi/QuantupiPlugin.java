@@ -11,8 +11,6 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 
-import javax.print.event.PrintEvent;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
