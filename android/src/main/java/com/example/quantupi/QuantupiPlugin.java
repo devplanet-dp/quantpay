@@ -10,6 +10,9 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
+
+import javax.print.event.PrintEvent;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -52,10 +55,9 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 uriBuilder.appendQueryParameter("pn", receiverName);
                 uriBuilder.appendQueryParameter("tn", transactionNote);
                 uriBuilder.appendQueryParameter("am", amount);
-                uriBuilder.appendQueryParameter("tid", orderId);
-                if (transactionRefId != null) {
-                    uriBuilder.appendQueryParameter("tr", transactionRefId);
-                }
+                uriBuilder.appendQueryParameter("tid", transactionRefId);
+                uriBuilder.appendQueryParameter("tr", orderId);
+                
                 if (currency == null) {
                     uriBuilder.appendQueryParameter("cr", "INR");
                 } else
@@ -68,6 +70,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 }
 
                 Uri uri = uriBuilder.build();
+               
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri);
