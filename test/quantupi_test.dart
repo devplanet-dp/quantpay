@@ -14,7 +14,8 @@ void main() {
           receiverName: 'Test',
           transactionNote: 'Test',
           amount: 1.0,
-          orderId: '7896'
+          transactionRefId: 'TransactionRefId',
+          orderId: '77885566522'
         );
       });
 
