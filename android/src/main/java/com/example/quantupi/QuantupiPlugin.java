@@ -23,6 +23,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
     int uniqueRequestCode = 3498;
     MethodChannel.Result finalResult;
     boolean exception = false;
+    String uriString="";
     Activity activity;
 
     @Override
@@ -68,15 +69,16 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 }
 
                 Uri uri = uriBuilder.build();
-               
+                uriString = uri.toString();
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri);
                 activity.startActivityForResult(intent, uniqueRequestCode);
-                finalResult.success(uri.toString());
+               
             } catch (Exception ex) {
                 exception = true;
-                finalResult.success(ex.getMessage());
+                uriString = ex.getMessage();
+                result.error("Exception", ex.getMessage(), null);
             }
         } else {
             result.notImplemented();
@@ -96,13 +98,13 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 try {
                     String response =data.getStringExtra("response");
 
-                    if (!exception) finalResult.success(response);
+                    if (!exception) finalResult.success(response+" "+ uriString);
                 } catch (Exception ex) {
-                    if (!exception) finalResult.success("null_response");
+                    if (!exception) finalResult.success("null_response "+ uriString);
                 }
             } else {
                 Log.d("Quantupi NOTE: ", "Received NULL, User cancelled the transaction.");
-                if (!exception) finalResult.success("user_canceled");
+                if (!exception) finalResult.success("user_canceled "+uriString);
             }
         }
         return true;
