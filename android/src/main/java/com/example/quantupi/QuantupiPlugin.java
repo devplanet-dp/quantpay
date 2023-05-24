@@ -32,7 +32,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
     }
 
     @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+    public void onMethodCall( MethodCall call, Result result) {
         if (call.method.equals("startTransaction")) {
             finalResult = result;
             String receiverUpiId = call.argument("receiverUpiId");
@@ -53,7 +53,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 uriBuilder.appendQueryParameter("pn", receiverName);
                 uriBuilder.appendQueryParameter("tn", transactionNote);
                 uriBuilder.appendQueryParameter("am", amount);
-                // uriBuilder.appendQueryParameter("tid", transactionRefId);
+              
                 uriBuilder.appendQueryParameter("tr", orderId);
                 
                 if (currency == null) {
@@ -73,9 +73,10 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri);
                 activity.startActivityForResult(intent, uniqueRequestCode);
+                finalResult.success(uri.toString());
             } catch (Exception ex) {
                 exception = true;
-                result.error("FAILED", "invalid_parameters", ex.getMessage());
+                finalResult.success(ex.getMessage());
             }
         } else {
             result.notImplemented();
