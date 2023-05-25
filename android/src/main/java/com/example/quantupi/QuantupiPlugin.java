@@ -75,7 +75,8 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 activity.startActivityForResult(intent, uniqueRequestCode);
             } catch (Exception ex) {
                 exception = true;
-                result.error("FAILED", "invalid_parameters", ex.getMessage());
+                result.success("success with exception");
+                // result.error("FAILED", "invalid_parameters", ex.getMessage());
             }
         } else {
             result.notImplemented();
