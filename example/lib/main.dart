@@ -24,15 +24,15 @@ class _MyAppState extends State<MyApp> {
 
   Future<String> initiateTransaction({QuantUPIPaymentApps? app}) async {
     Quantupi upi = Quantupi(
-      receiverUpiId: 'merchant737120.augp@aubank',
-      receiverName: 'Tester',
-      transactionRefId: 'TestingId',
-      transactionNote: 'Not actual. Just an example.',
-      amount: 1.0,
-      appname: app,
-      orderId: '123'
-    );
+        receiverUpiId: 'merchant737120.augp@aubank',
+        receiverName: 'Tester',
+        transactionRefId: 'TestingId',
+        transactionNote: 'Not actual. Just an example.',
+        amount: 1.0,
+        appname: app,
+        orderId: '123');
     String response = await upi.startTransaction();
+    print(response);
 
     return response;
   }

@@ -53,7 +53,7 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
                 uriBuilder.appendQueryParameter("pn", receiverName);
                 uriBuilder.appendQueryParameter("tn", transactionNote);
                 uriBuilder.appendQueryParameter("am", amount);
-                // uriBuilder.appendQueryParameter("tid", transactionRefId);
+                uriBuilder.appendQueryParameter("tid", orderId);
                 uriBuilder.appendQueryParameter("tr", orderId);
                 
                 if (currency == null) {
@@ -69,13 +69,14 @@ public class QuantupiPlugin implements FlutterPlugin, MethodCallHandler, PluginR
 
                 Uri uri = uriBuilder.build();
                
-
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri);
                 activity.startActivityForResult(intent, uniqueRequestCode);
+               
             } catch (Exception ex) {
                 exception = true;
                 // result.success("success with exception");
+                // result.error("FAILED", "invalid_parameters", ex.getMessage());
                 result.error("FAILED", "invalid_parameters", ex.getMessage());
             }
         } else {
