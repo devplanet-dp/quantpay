@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
         transactionRefId: 'TestingId',
         transactionNote: 'Not actual. Just an example.',
         amount: 1.0,
-        appname: app,
         orderId: '123');
     String response = await upi.startTransaction();
     print(response);
